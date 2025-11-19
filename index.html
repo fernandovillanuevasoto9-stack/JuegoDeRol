@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura de Rol - Juego Interactivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Pantalla de Inicio -->
+        <div id="startScreen" class="screen active">
+            <div class="title-section">
+                <h1>⚔️ Aventura de Rol</h1>
+                <p class="subtitle">Un juego de fantasía épico</p>
+            </div>
+            
+            <div class="content">
+                <p>Bienvenido aventurero. Elige tu raza y comienza tu aventura.</p>
+                
+                <div class="character-selection">
+                    <h2>Selecciona tu Raza</h2>
+                    <div class="races">
+                        <div class="race-card" onclick="selectRace('humano')">
+                            <h3>🧑 Humano</h3>
+                            <p>Versátil y adaptable</p>
+                            <small>+2 a todos los atributos</small>
+                        </div>
+                        <div class="race-card" onclick="selectRace('elfo')">
+                            <h3>🏹 Elfo</h3>
+                            <p>Ágil y mágico</p>
+                            <small>+3 Destreza, +2 Magia</small>
+                        </div>
+                        <div class="race-card" onclick="selectRace('enano')">
+                            <h3>⛏️ Enano</h3>
+                            <p>Fuerte y resistente</p>
+                            <small>+3 Fuerza, +2 Resistencia</small>
+                        </div>
+                        <div class="race-card" onclick="selectRace('orco')">
+                            <h3>🗡️ Orco</h3>
+                            <p>Guerrero feroz</p>
+                            <small>+4 Fuerza, -1 Inteligencia</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla del Juego Principal -->
+        <div id="gameScreen" class="screen">
+            <div class="game-layout">
+                <!-- Panel de Información del Jugador -->
+                <div class="sidebar left-sidebar">
+                    <div class="character-info">
+                        <h3 id="characterName">Aventurero</h3>
+                        <p id="characterRace" class="race-text"></p>
+                        
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-label">Vida:</span>
+                                <div class="stat-bar">
+                                    <div id="healthBar" class="bar-fill" style="width: 100%"></div>
+                                </div>
+                                <span id="healthText" class="stat-value">100/100</span>
+                            </div>
+                            
+                            <div class="stat">
+                                <span class="stat-label">Maná:</span>
+                                <div class="stat-bar">
+                                    <div id="manaBar" class="bar-fill mana" style="width: 100%"></div>
+                                </div>
+                                <span id="manaText" class="stat-value">50/50</span>
+                            </div>
+
+                            <div class="stat">
+                                <span class="stat-label">Experiencia:</span>
+                                <div class="stat-bar">
+                                    <div id="expBar" class="bar-fill exp" style="width: 0%"></div>
+                                </div>
+                                <span id="expText" class="stat-value">0/100</span>
+                            </div>
+                        </div>
+
+                        <div class="attributes">
+                            <h4>Atributos</h4>
+                            <div class="attr-grid">
+                                <div class="attr">
+                                    <span class="attr-name">FUE</span>
+                                    <span id="attrStr" class="attr-value">10</span>
+                                </div>
+                                <div class="attr">
+                                    <span class="attr-name">DES</span>
+                                    <span id="attrDex" class="attr-value">10</span>
+                                </div>
+                                <div class="attr">
+                                    <span class="attr-name">RES</span>
+                                    <span id="attrCon" class="attr-value">10</span>
+                                </div>
+                                <div class="attr">
+                                    <span class="attr-name">INT</span>
+                                    <span id="attrInt" class="attr-value">10</span>
+                                </div>
+                                <div class="attr">
+                                    <span class="attr-name">SAB</span>
+                                    <span id="attrWis" class="attr-value">10</span>
+                                </div>
+                                <div class="attr">
+                                    <span class="attr-name">CAR</span>
+                                    <span id="attrCha" class="attr-value">10</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inventory-section">
+                            <h4>Inventario</h4>
+                            <div id="inventoryList" class="inventory">
+                                <p class="empty-inventory">Vacío</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Área Principal del Juego -->
+                <div class="main-content">
+                    <div class="game-header">
+                        <h2 id="locationName">En el Camino</h2>
+                        <p id="locationDesc">Un camino misterioso se abre ante ti...</p>
+                    </div>
+
+                    <div class="game-area">
+                        <div id="storyContent" class="story-content">
+                            <!-- Contenido dinámico -->
+                        </div>
+
+                        <div id="combatArea" class="combat-area" style="display: none;">
+                            <div class="enemy-info">
+                                <h3 id="enemyName">Enemigo</h3>
+                                <div class="stat">
+                                    <span class="stat-label">Vida del Enemigo:</span>
+                                    <div class="stat-bar">
+                                        <div id="enemyHealthBar" class="bar-fill enemy" style="width: 100%"></div>
+                                    </div>
+                                    <span id="enemyHealthText" class="stat-value">50/50</span>
+                                </div>
+                            </div>
+
+                            <div class="combat-actions">
+                                <button class="combat-btn attack-btn" onclick="playerAttack()">⚔️ Atacar</button>
+                                <button class="combat-btn magic-btn" onclick="castSpell()">✨ Hechizo</button>
+                                <button class="combat-btn defend-btn" onclick="defend()">🛡️ Defender</button>
+                                <button class="combat-btn flee-btn" onclick="flee()">🏃 Huir</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="options-area">
+                        <div id="optionsContainer" class="options-container">
+                            <!-- Botones de opciones dinámicas -->
+                        </div>
+                    </div>
+
+                    <div id="messageLog" class="message-log">
+                        <p class="log-entry welcome">Bienvenido a tu aventura...</p>
+                    </div>
+                </div>
+
+                <!-- Panel Derecho -->
+                <div class="sidebar right-sidebar">
+                    <div class="quest-log">
+                        <h3>Misiones</h3>
+                        <div id="questList" class="quests">
+                            <p class="no-quests">Sin misiones activas</p>
+                        </div>
+                    </div>
+
+                    <div class="map-mini">
+                        <h3>Mapa</h3>
+                        <div id="miniMap" class="mini-map">
+                            <!-- Mapa generado dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="stats-panel">
+                        <h3>Estadísticas</h3>
+                        <div class="stat-item">
+                            <span>Nivel:</span>
+                            <span id="levelText" class="stat-value-text">1</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Oro:</span>
+                            <span id="goldText" class="stat-value-text">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Enemigos derrotados:</span>
+                            <span id="enemiesDefeatedText" class="stat-value-text">0</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-secondary" onclick="openMenu()">☰ Menú</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal del Menú -->
+        <div id="menuModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Menú</h2>
+                    <button class="close-btn" onclick="closeMenu()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <button class="btn-menu" onclick="continueGame()">Continuar Juego</button>
+                    <button class="btn-menu" onclick="showCharacterStats()">Ver Estadísticas</button>
+                    <button class="btn-menu" onclick="resetGame()">Nuevo Juego</button>
+                    <button class="btn-menu" onclick="showCredits()">Créditos</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Estadísticas -->
+        <div id="statsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Estadísticas Detalladas</h2>
+                    <button class="close-btn" onclick="closeModal('statsModal')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div id="detailedStats"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Créditos -->
+        <div id="creditsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Créditos</h2>
+                    <button class="close-btn" onclick="closeModal('creditsModal')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <h3>Aventura de Rol</h3>
+                    <p>Un juego de fantasía épico creado con HTML5, CSS3 y JavaScript.</p>
+                    <hr>
+                    <p><strong>Desarrollo:</strong> Tu nombre</p>
+                    <p><strong>Año:</strong> 2025</p>
+                    <p>Gracias por jugar!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

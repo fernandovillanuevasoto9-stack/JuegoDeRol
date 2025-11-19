@@ -38,12 +38,12 @@ const game = {
 const races = {
     humano: {
         name: 'Humano',
-        description: 'Versátil y adaptable',
+        description: 'VersÃ¡til y adaptable',
         bonus: { strength: 2, dexterity: 2, constitution: 2, intelligence: 2, wisdom: 2, charisma: 2 }
     },
     elfo: {
         name: 'Elfo',
-        description: 'Ágil y mágico',
+        description: 'Ãgil y mÃ¡gico',
         bonus: { strength: 0, dexterity: 3, constitution: 1, intelligence: 2, wisdom: 2, charisma: 1 }
     },
     enano: {
@@ -63,18 +63,18 @@ const scenes = {
     start: {
         title: 'En el Camino',
         description: 'Un camino misterioso se abre ante ti...',
-        text: 'Te despiertas en el borde de un antiguo camino. A tu alrededor, solo bosque oscuro. El viento trae consigo el sonido de algo lejano... ¿peligro o oportunidad?',
+        text: 'Te despiertas en el borde de un antiguo camino. A tu alrededor, solo bosque oscuro. El viento trae consigo el sonido de algo lejano... Â¿peligro o oportunidad?',
         options: [
             { text: 'Explorar el bosque', action: 'explore' },
             { text: 'Seguir el camino', action: 'followRoad' },
-            { text: 'Descansar aquí', action: 'rest' }
+            { text: 'Descansar aquÃ­', action: 'rest' }
         ]
     },
     
     explore: {
         title: 'En el Bosque Profundo',
-        description: 'Rodeado de árboles y sombras',
-        text: 'Te adentras en el bosque. Los árboles son antiguos y retorcidos. De repente, ves ojos brillantes en la penumbra... Un lobo furioso salta hacia ti!',
+        description: 'Rodeado de Ã¡rboles y sombras',
+        text: 'Te adentras en el bosque. Los Ã¡rboles son antiguos y retorcidos. De repente, ves ojos brillantes en la penumbra... Un lobo furioso salta hacia ti!',
         combat: true,
         enemy: {
             name: 'Lobo Salvaje',
@@ -91,7 +91,7 @@ const scenes = {
     followRoad: {
         title: 'La Posada del Camino',
         description: 'Una vieja posada de madera',
-        text: 'Caminas por el antiguo sendero hasta llegar a una posada desgastada. El humo sale de la chimenea y se oye música dentro.',
+        text: 'Caminas por el antiguo sendero hasta llegar a una posada desgastada. El humo sale de la chimenea y se oye mÃºsica dentro.',
         options: [
             { text: 'Entrar a la posada', action: 'enterTavern' },
             { text: 'Acampar afuera', action: 'camp' },
@@ -102,7 +102,7 @@ const scenes = {
     rest: {
         title: 'Campamento',
         description: 'Descansas bajo las estrellas',
-        text: 'Enciendes un pequeño fuego y descanso bajo el cielo estrellado. Te sientes más fuerte. Tu salud se restaura completamente.',
+        text: 'Enciendes un pequeÃ±o fuego y descanso bajo el cielo estrellado. Te sientes mÃ¡s fuerte. Tu salud se restaura completamente.',
         onEnter: () => {
             game.player.health = game.player.maxHealth;
             game.player.mana = game.player.maxMana;
@@ -116,12 +116,12 @@ const scenes = {
     
     enterTavern: {
         title: 'La Posada',
-        description: 'Un lugar cálido y acogedor',
-        text: 'Entras en la posada. El tabernero te saluda con una sonrisa. Hay viajeros bebiendo cerveza en las mesas. El tabernero dice: "Bienvenido, aventurero. ¿Qué deseas?"',
+        description: 'Un lugar cÃ¡lido y acogedor',
+        text: 'Entras en la posada. El tabernero te saluda con una sonrisa. Hay viajeros bebiendo cerveza en las mesas. El tabernero dice: "Bienvenido, aventurero. Â¿QuÃ© deseas?"',
         options: [
             { text: 'Comprar bebida (10 de oro)', action: 'buyDrink' },
-            { text: 'Pedir información', action: 'askInfo' },
-            { text: 'Alquilar una habitación (25 de oro)', action: 'rentRoom' },
+            { text: 'Pedir informaciÃ³n', action: 'askInfo' },
+            { text: 'Alquilar una habitaciÃ³n (25 de oro)', action: 'rentRoom' },
             { text: 'Partir', action: 'start' }
         ]
     },
@@ -129,7 +129,7 @@ const scenes = {
     camp: {
         title: 'Campamento',
         description: 'Acampas fuera de la posada',
-        text: 'Acampas en el exterior. Durante la noche, escuchas ruidos extraños... De repente, una banda de bandidos emerge de las sombras!',
+        text: 'Acampas en el exterior. Durante la noche, escuchas ruidos extraÃ±os... De repente, una banda de bandidos emerge de las sombras!',
         combat: true,
         enemy: {
             name: 'Bandido',
@@ -146,10 +146,10 @@ const scenes = {
     victory_wolf: {
         title: 'Victoria',
         description: 'Has derrotado al lobo',
-        text: 'El lobo cae derrotado. Encuentras una poción de salud en su guarida.',
+        text: 'El lobo cae derrotado. Encuentras una pociÃ³n de salud en su guarida.',
         onEnter: () => {
-            game.player.inventory.push({ name: 'Poción de Salud', healing: 30 });
-            addLog('Obtienes: Poción de Salud', 'xp');
+            game.player.inventory.push({ name: 'PociÃ³n de Salud', healing: 30 });
+            addLog('Obtienes: PociÃ³n de Salud', 'xp');
         },
         options: [
             { text: 'Continuar', action: 'start' }
@@ -192,31 +192,31 @@ const scenes = {
     askInfo: {
         title: 'La Posada',
         description: 'El tabernero te cuenta historias',
-        text: 'El tabernero se inclina y susurra: "He oído hablar de una mazmorra antigua al norte de aquí. Se dice que hay un dragón... y un tesoro invaluable."',
+        text: 'El tabernero se inclina y susurra: "He oÃ­do hablar de una mazmorra antigua al norte de aquÃ­. Se dice que hay un dragÃ³n... y un tesoro invaluable."',
         options: [
-            { text: 'Preguntar más', action: 'askInfo' },
-            { text: 'Partir en una búsqueda', action: 'dungeon' },
+            { text: 'Preguntar mÃ¡s', action: 'askInfo' },
+            { text: 'Partir en una bÃºsqueda', action: 'dungeon' },
             { text: 'Volver al descanso', action: 'enterTavern' }
         ]
     },
     
     rentRoom: {
-        title: 'Habitación de la Posada',
-        description: 'Una habitación acogedora',
-        text: 'Alquilas una habitación confortable. Duermes profundamente y despiertas renovado.',
+        title: 'HabitaciÃ³n de la Posada',
+        description: 'Una habitaciÃ³n acogedora',
+        text: 'Alquilas una habitaciÃ³n confortable. Duermes profundamente y despiertas renovado.',
         onEnter: () => {
             if (game.player.gold >= 25) {
                 game.player.gold -= 25;
                 game.player.health = game.player.maxHealth;
                 game.player.mana = game.player.maxMana;
-                addLog('Alquilas una habitación por 25 de oro', 'heal');
+                addLog('Alquilas una habitaciÃ³n por 25 de oro', 'heal');
             } else {
                 addLog('No tienes suficiente oro!', 'damage');
             }
             updateUI();
         },
         options: [
-            { text: 'Descansar más', action: 'rentRoom' },
+            { text: 'Descansar mÃ¡s', action: 'rentRoom' },
             { text: 'Partir', action: 'start' }
         ]
     },
@@ -224,10 +224,10 @@ const scenes = {
     dungeon: {
         title: 'La Mazmorra Antigua',
         description: 'Entrada oscura a una mazmorra',
-        text: 'Te adentras en la mazmorra. Las paredes están cubiertas de musgo y escombros. De repente, un DRAGÓN JOVEN emerge de las sombras, rugiendo furiosamente!',
+        text: 'Te adentras en la mazmorra. Las paredes estÃ¡n cubiertas de musgo y escombros. De repente, un DRAGÃ“N JOVEN emerge de las sombras, rugiendo furiosamente!',
         combat: true,
         enemy: {
-            name: 'Dragón Joven',
+            name: 'DragÃ³n Joven',
             health: 80,
             maxHealth: 80,
             attack: 12,
@@ -239,13 +239,13 @@ const scenes = {
     },
     
     victory_dragon: {
-        title: '¡VICTORIA ÉPICA!',
-        description: 'Has derrotado al dragón',
-        text: 'El dragón cae. Has encontrado un tesoro inmenso. ¡Eres una leyenda! La aventura continúa...',
+        title: 'Â¡VICTORIA Ã‰PICA!',
+        description: 'Has derrotado al dragÃ³n',
+        text: 'El dragÃ³n cae. Has encontrado un tesoro inmenso. Â¡Eres una leyenda! La aventura continÃºa...',
         onEnter: () => {
             game.player.gold += 500;
             game.player.experience += 100;
-            addLog('¡VICTORIA ÉPICA! Obtienes un tesoro invaluable', 'xp');
+            addLog('Â¡VICTORIA Ã‰PICA! Obtienes un tesoro invaluable', 'xp');
             checkLevelUp();
         },
         options: [
@@ -266,7 +266,7 @@ function selectRace(raceKey) {
         game.player.stats[stat] += race.bonus[stat];
     }
     
-    // Recalcular salud basada en constitución
+    // Recalcular salud basada en constituciÃ³n
     game.player.maxHealth = 100 + (game.player.stats.constitution * 5);
     game.player.health = game.player.maxHealth;
     game.player.maxMana = 50 + (game.player.stats.intelligence * 3);
@@ -296,7 +296,7 @@ function loadScene(sceneKey) {
     const storyContent = document.getElementById('storyContent');
     storyContent.innerHTML = `<p>${scene.text}</p>`;
     
-    // Ejecutar acción al entrar si existe
+    // Ejecutar acciÃ³n al entrar si existe
     if (scene.onEnter) {
         scene.onEnter();
     }
@@ -340,7 +340,7 @@ function playerAttack() {
     const damage = Math.floor(Math.random() * 10 + game.player.stats.strength);
     game.currentEnemy.health -= damage;
     
-    addLog(`¡Atacas! Inflinges ${damage} de daño`, 'damage');
+    addLog(`Â¡Atacas! Inflinges ${damage} de daÃ±o`, 'damage');
     
     if (game.currentEnemy.health <= 0) {
         defeatEnemy();
@@ -355,7 +355,7 @@ function castSpell() {
     if (!game.currentEnemy) return;
     
     if (game.player.mana < 15) {
-        addLog('No tienes suficiente maná!', 'damage');
+        addLog('No tienes suficiente manÃ¡!', 'damage');
         return;
     }
     
@@ -363,7 +363,7 @@ function castSpell() {
     const damage = Math.floor(Math.random() * 15 + game.player.stats.intelligence);
     game.currentEnemy.health -= damage;
     
-    addLog(`¡Lanzas un hechizo! Inflinges ${damage} de daño mágico`, 'damage');
+    addLog(`Â¡Lanzas un hechizo! Inflinges ${damage} de daÃ±o mÃ¡gico`, 'damage');
     
     if (game.currentEnemy.health <= 0) {
         defeatEnemy();
@@ -376,7 +376,7 @@ function castSpell() {
 
 function defend() {
     game.defending = true;
-    addLog('Te pones en posición defensiva', 'heal');
+    addLog('Te pones en posiciÃ³n defensiva', 'heal');
     
     setTimeout(() => {
         enemyAttack();
@@ -391,9 +391,9 @@ function enemyAttack() {
     
     if (game.defending) {
         damage = Math.floor(damage / 2);
-        addLog(`El enemigo ataca pero tu defensa reduce el daño a ${damage}`, 'heal');
+        addLog(`El enemigo ataca pero tu defensa reduce el daÃ±o a ${damage}`, 'heal');
     } else {
-        addLog(`¡El ${game.currentEnemy.name} te ataca! Recibes ${damage} de daño`, 'damage');
+        addLog(`Â¡El ${game.currentEnemy.name} te ataca! Recibes ${damage} de daÃ±o`, 'damage');
     }
     
     game.player.health -= damage;
@@ -408,10 +408,10 @@ function enemyAttack() {
 function flee() {
     const fleeChance = Math.random();
     if (fleeChance > 0.4) {
-        addLog('¡Logras escapar!', 'heal');
+        addLog('Â¡Logras escapar!', 'heal');
         loadScene('start');
     } else {
-        addLog('¡No logras escapar!', 'damage');
+        addLog('Â¡No logras escapar!', 'damage');
         enemyAttack();
     }
 }
@@ -424,7 +424,7 @@ function defeatEnemy() {
     game.player.gold += gold;
     game.player.enemiesDefeated += 1;
     
-    addLog(`¡Derrotas al ${game.currentEnemy.name}!`, 'xp');
+    addLog(`Â¡Derrotas al ${game.currentEnemy.name}!`, 'xp');
     addLog(`Obtienes ${xp} de experiencia y ${gold} de oro`, 'xp');
     
     checkLevelUp();
@@ -450,12 +450,12 @@ function checkLevelUp() {
         game.player.maxMana += 10;
         game.player.mana = game.player.maxMana;
         
-        addLog(`¡SUBISTE DE NIVEL! Ahora eres nivel ${game.player.level}!`, 'xp');
+        addLog(`Â¡SUBISTE DE NIVEL! Ahora eres nivel ${game.player.level}!`, 'xp');
     }
 }
 
 function gameOver() {
-    addLog('¡HAS SIDO DERROTADO! Reinicia el juego.', 'damage');
+    addLog('Â¡HAS SIDO DERROTADO! Reinicia el juego.', 'damage');
     document.getElementById('combatArea').style.display = 'none';
 }
 
@@ -468,7 +468,7 @@ function addLog(message, type = 'normal') {
     messageLog.appendChild(entry);
     messageLog.scrollTop = messageLog.scrollHeight;
     
-    // Mantener solo los últimos 10 mensajes
+    // Mantener solo los Ãºltimos 10 mensajes
     const entries = messageLog.querySelectorAll('.log-entry');
     if (entries.length > 10) {
         entries[0].remove();
@@ -476,11 +476,11 @@ function addLog(message, type = 'normal') {
 }
 
 function updateUI() {
-    // Actualizar información del personaje
+    // Actualizar informaciÃ³n del personaje
     document.getElementById('characterName').textContent = game.player.name;
     document.getElementById('characterRace').textContent = races[game.player.race].description;
     
-    // Barras de salud, maná y experiencia
+    // Barras de salud, manÃ¡ y experiencia
     const healthPercent = (game.player.health / game.player.maxHealth) * 100;
     const manaPercent = (game.player.mana / game.player.maxMana) * 100;
     const expPercent = (game.player.experience / game.player.maxExperience) * 100;
@@ -505,7 +505,7 @@ function updateUI() {
     // Actualizar inventario
     const inventoryList = document.getElementById('inventoryList');
     if (game.player.inventory.length === 0) {
-        inventoryList.innerHTML = '<p class="empty-inventory">Vacío</p>';
+        inventoryList.innerHTML = '<p class="empty-inventory">VacÃ­o</p>';
     } else {
         inventoryList.innerHTML = '';
         game.player.inventory.forEach((item, index) => {
@@ -517,7 +517,7 @@ function updateUI() {
         });
     }
     
-    // Actualizar estadísticas
+    // Actualizar estadÃ­sticas
     document.getElementById('levelText').textContent = game.player.level;
     document.getElementById('goldText').textContent = game.player.gold;
     document.getElementById('enemiesDefeatedText').textContent = game.player.enemiesDefeated;
@@ -542,7 +542,7 @@ function useItem(index) {
     }
 }
 
-// FUNCIONES DE MENÚ
+// FUNCIONES DE MENÃš
 
 function openMenu() {
     document.getElementById('menuModal').classList.add('active');
@@ -570,16 +570,16 @@ function showCharacterStats() {
         <p><strong>Nivel:</strong> ${game.player.level}</p>
         <p><strong>Experiencia:</strong> ${game.player.experience}/${game.player.maxExperience}</p>
         <p><strong>Vida:</strong> ${game.player.health}/${game.player.maxHealth}</p>
-        <p><strong>Maná:</strong> ${game.player.mana}/${game.player.maxMana}</p>
+        <p><strong>ManÃ¡:</strong> ${game.player.mana}/${game.player.maxMana}</p>
         <p><strong>Oro:</strong> ${game.player.gold}</p>
         <p><strong>Enemigos derrotados:</strong> ${game.player.enemiesDefeated}</p>
         
         <h4 style="margin-top: 20px;">Atributos</h4>
         <p>Fuerza: ${game.player.stats.strength}</p>
         <p>Destreza: ${game.player.stats.dexterity}</p>
-        <p>Constitución: ${game.player.stats.constitution}</p>
+        <p>ConstituciÃ³n: ${game.player.stats.constitution}</p>
         <p>Inteligencia: ${game.player.stats.intelligence}</p>
-        <p>Sabiduría: ${game.player.stats.wisdom}</p>
+        <p>SabidurÃ­a: ${game.player.stats.wisdom}</p>
         <p>Carisma: ${game.player.stats.charisma}</p>
     `;
     
@@ -587,7 +587,7 @@ function showCharacterStats() {
 }
 
 function resetGame() {
-    if (confirm('¿Estás seguro de que quieres comenzar un nuevo juego?')) {
+    if (confirm('Â¿EstÃ¡s seguro de que quieres comenzar un nuevo juego?')) {
         location.reload();
     }
 }

@@ -1,0 +1,109 @@
+/* styles.css */
+:root {
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #16213e;
+    --accent: #e94560;
+    --gold: #ffd700;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: #eaeaea;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh; /* Forzar altura completa */
+    overflow: hidden; /* Evitar scroll en el body */
+}
+
+/* Fondo de pantallas */
+.bg-primary-custom {
+    background-color: var(--primary-bg);
+}
+
+.bg-secondary-custom {
+    background-color: var(--secondary-bg);
+}
+
+/* Pantallas */
+.screen {
+    display: none;
+    height: 100vh;
+    width: 100%;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+/* Start Screen */
+#startScreen {
+    background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+    height: 100vh;
+    overflow-y: auto; /* Permitir scroll si la pantalla es muy chica */
+}
+
+/* Tarjetas de Raza */
+.race-card {
+    background: rgba(22, 33, 62, 0.8);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+.race-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.4);
+    background: #1f2b4d;
+}
+
+/* Cajas de atributos */
+.attr-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #2c3e50;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+/* Scrollbars personalizadas */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f1526;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ajustes para Movil */
+@media (max-width: 991px) {
+    /* En movil el scroll es en toda la pagina, no oculto */
+    body {
+        overflow: auto; 
+        height: auto;
+    }
+    .screen {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    /* El menu flotante */
+    .btn-warning.rounded-circle {
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Hacer que el log no sea tan alto en celular */
+    #messageLog {
+        height: 80px !important;
+    }
+}

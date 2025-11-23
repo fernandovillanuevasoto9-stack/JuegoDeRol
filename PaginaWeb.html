@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura de Rol</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-fluid p-0 main-container">
+        
+        <div id="startScreen" class="screen active d-flex flex-column align-items-center justify-content-center p-3">
+            <div class="title-section text-center mt-3 mt-md-5">
+                <h1 class="display-3 fw-bold text-danger">Aventura de Rol</h1>
+                <p class="subtitle lead text-warning">Un juego de fantasia epico</p>
+            </div>
+            
+            <div class="content container">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-dark text-light border-secondary">Nombre</span>
+                            <input type="text" id="playerNameInput" class="form-control bg-secondary text-light border-secondary" placeholder="Tu nombre aqui...">
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-light">Elige tu raza y forja tu destino:</p>
+                
+                <div class="row g-3 justify-content-center">
+                    <div class="col-6 col-md-3">
+                        <div class="race-card h-100 p-3" onclick="selectRace('humano')">
+                            <h3>Humano</h3>
+                            <p>Versatil</p>
+                            <small>+2 Todo</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="race-card h-100 p-3" onclick="selectRace('elfo')">
+                            <h3>Elfo</h3>
+                            <p>Agil</p>
+                            <small>+DES/INT</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="race-card h-100 p-3" onclick="selectRace('enano')">
+                            <h3>Enano</h3>
+                            <p>Duro</p>
+                            <small>+FUE/CON</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="race-card h-100 p-3" onclick="selectRace('orco')">
+                            <h3>Orco</h3>
+                            <p>Brutal</p>
+                            <small>+FUE/-INT</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameScreen" class="screen">
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    
+                    <div class="col-lg-3 col-md-4 order-2 order-md-1 bg-secondary-custom p-3 overflow-auto border-end border-dark sidebar-mobile">
+                        <div class="character-info">
+                            <h3 id="characterName" class="text-warning text-center">Aventurero</h3>
+                            <p id="characterRace" class="race-text text-center mb-3"></p>
+                            
+                            <div class="mb-2">
+                                <small>Vida</small>
+                                <div class="progress" style="height: 15px;">
+                                    <div id="healthBar" class="progress-bar bg-danger" style="width: 100%"></div>
+                                </div>
+                                <small id="healthText" class="text-end d-block text-muted">100/100</small>
+                            </div>
+                            
+                            <div class="mb-2">
+                                <small>Mana</small>
+                                <div class="progress" style="height: 15px;">
+                                    <div id="manaBar" class="progress-bar bg-primary" style="width: 100%"></div>
+                                </div>
+                                <small id="manaText" class="text-end d-block text-muted">50/50</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <small>XP</small>
+                                <div class="progress" style="height: 15px;">
+                                    <div id="expBar" class="progress-bar bg-success" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <div class="row g-1 text-center mb-3">
+                                <div class="col-4"><div class="attr-box">FUE <br><span id="attrStr" class="text-warning">10</span></div></div>
+                                <div class="col-4"><div class="attr-box">DES <br><span id="attrDex" class="text-warning">10</span></div></div>
+                                <div class="col-4"><div class="attr-box">CON <br><span id="attrCon" class="text-warning">10</span></div></div>
+                                <div class="col-4"><div class="attr-box">INT <br><span id="attrInt" class="text-warning">10</span></div></div>
+                                <div class="col-4"><div class="attr-box">SAB <br><span id="attrWis" class="text-warning">10</span></div></div>
+                                <div class="col-4"><div class="attr-box">CAR <br><span id="attrCha" class="text-warning">10</span></div></div>
+                            </div>
+
+                            <div class="inventory-section">
+                                <h5>Inventario</h5>
+                                <div id="inventoryList" class="inventory p-2 rounded bg-dark">
+                                    <p class="empty-inventory text-muted text-center small">Vacio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-8 order-1 order-md-2 p-0 d-flex flex-column position-relative bg-primary-custom">
+                        <div class="game-header p-3 border-bottom border-secondary">
+                            <h2 id="locationName" class="h4 text-danger">Ubicacion</h2>
+                            <p id="locationDesc" class="small text-muted m-0">Descripcion...</p>
+                        </div>
+
+                        <div class="game-area flex-grow-1 p-3 overflow-auto">
+                            <div id="storyContent" class="story-content mb-4 lead"></div>
+
+                            <div id="combatArea" class="card bg-dark border-danger mb-3" style="display: none;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h4 id="enemyName" class="text-danger m-0">Enemigo</h4>
+                                        <span id="enemyHealthText" class="badge bg-danger">50/50</span>
+                                    </div>
+                                    <div class="progress mb-3" style="height: 10px;">
+                                        <div id="enemyHealthBar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                                    </div>
+
+                                    <div class="d-grid gap-2 d-md-block text-center">
+                                        <button class="btn btn-danger mb-1" onclick="playerAttack()">Atacar</button>
+                                        <button class="btn btn-primary mb-1" onclick="castSpell()">Hechizo</button>
+                                        <button class="btn btn-success mb-1" onclick="defend()">Defender</button>
+                                        <button class="btn btn-secondary mb-1" onclick="flee()">Huir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="options-area p-3 bg-dark border-top border-secondary">
+                            <div id="optionsContainer" class="d-flex flex-wrap gap-2 justify-content-center">
+                                </div>
+                        </div>
+                        
+                        <div id="messageLog" class="bg-black p-2 text-light small" style="height: 100px; overflow-y: scroll; opacity: 0.8;">
+                            <p class="log-entry welcome">Bienvenido...</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 d-none d-lg-block order-3 bg-secondary-custom p-3 border-start border-dark">
+                        <div class="quest-log mb-4">
+                            <h4>Misiones</h4>
+                            <div id="questList" class="quests">
+                                <p class="text-muted small text-center">Sin misiones</p>
+                            </div>
+                        </div>
+
+                        <div class="stats-panel">
+                            <h4>Resumen</h4>
+                            <ul class="list-group list-group-flush bg-transparent">
+                                <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+                                    <span>Nivel:</span> <span id="levelText" class="text-warning fw-bold">1</span>
+                                </li>
+                                <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+                                    <span>Oro:</span> <span id="goldText" class="text-warning fw-bold">0</span>
+                                </li>
+                                <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+                                    <span>Kills:</span> <span id="enemiesDefeatedText" class="text-warning fw-bold">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <button class="btn btn-outline-light w-100 mt-4" onclick="openMenu()">Menu Principal</button>
+                    </div>
+
+                    <button class="btn btn-warning rounded-circle position-fixed bottom-0 end-0 m-3 d-lg-none shadow-lg" style="width: 60px; height: 60px; z-index: 1000;" onclick="openMenu()">
+                        M
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="menuModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light border-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Menu de Juego</h5>
+                        <button type="button" class="btn-close btn-close-white" onclick="closeMenu()"></button>
+                    </div>
+                    <div class="modal-body d-grid gap-2">
+                        <button class="btn btn-primary" onclick="continueGame()">Continuar</button>
+                        <button class="btn btn-info" onclick="showCharacterStats()">Ver Estadisticas Completas</button>
+                        <button class="btn btn-danger" onclick="resetGame()">Reiniciar Partida</button>
+                        <button class="btn btn-secondary" onclick="showCredits()">Creditos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="statsModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header"><h5 class="modal-title">Ficha del Heroe</h5><button type="button" class="btn-close btn-close-white" onclick="closeModal('statsModal')"></button></div>
+                    <div class="modal-body" id="detailedStats"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="creditsModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light text-center">
+                    <div class="modal-header border-0"><button type="button" class="btn-close btn-close-white ms-auto" onclick="closeModal('creditsModal')"></button></div>
+                    <div class="modal-body">
+                        <h2 class="text-danger">Aventura de Rol</h2>
+                        <p class="text-muted">Creado en 2025</p>
+                        <p>Desarrollado para PC y Movil.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

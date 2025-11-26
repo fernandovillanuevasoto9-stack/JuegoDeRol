@@ -1,4 +1,3 @@
-// --- CONFIGURACION INICIAL ---
 const game = {
     currentScene: null,
     player: {
@@ -122,7 +121,6 @@ const scenes = {
     }
 };
 
-// --- FUNCIONES PRINCIPALES ---
 
 function selectRace(raceKey) {
     const race = races[raceKey];
@@ -190,7 +188,6 @@ function loadScene(sceneKey) {
     updateUI();
 }
 
-// --- SISTEMA DE COMBATE ---
 
 function playerAttack() {
     if (!game.currentEnemy) return;
@@ -271,7 +268,6 @@ function enemyTurn() {
     updateUI();
 }
 
-// --- HELPERS ---
 
 function fullHeal() {
     game.player.health = game.player.maxHealth;
@@ -384,7 +380,6 @@ function updateEnemyUI() {
     document.getElementById('enemyHealthBar').style.width = `${(Math.max(0, game.currentEnemy.health)/game.currentEnemy.maxHealth)*100}%`;
 }
 
-// --- MENUS MODALES (BOOTSTRAP) ---
 let menuModalBS, statsModalBS, creditsModalBS;
 
 function openMenu() {
